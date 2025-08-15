@@ -1,0 +1,5 @@
+export const EXPO_PUBLIC_SUPABASE_URL = process.env.EXPO_PUBLIC_SUPABASE_URL as string;
+export const EXPO_PUBLIC_SUPABASE_ANON_KEY = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY as string;
+if (!EXPO_PUBLIC_SUPABASE_URL || !EXPO_PUBLIC_SUPABASE_ANON_KEY) {
+  console.warn('Missing EXPO_PUBLIC_SUPABASE_* env vars (URL, ANON_KEY)');
+}
