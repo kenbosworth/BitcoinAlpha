@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, Text, StyleSheet, View } from 'react-native';
-import { useTheme } from '../lib/theme';
+import { useTheme } from '../../lib/theme';
 import Constants from 'expo-constants';
 
 type SectionProps = { title: string; children: React.ReactNode };

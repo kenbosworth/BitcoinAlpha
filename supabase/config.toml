@@ -343,3 +343,25 @@ entrypoint = "./functions/fetch-btc/index.ts"
 # Specifies static files to be bundled with the function. Supports glob patterns.
 # For example, if you want to serve static HTML pages in your function:
 # static_files = [ "./functions/fetch-btc/*.html" ]
+
+[functions.agree-terms]
+enabled = true
+verify_jwt = true
+import_map = "./functions/agree-terms/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/agree-terms/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/agree-terms/*.html" ]
+
+[functions.claim-promo]
+enabled = true
+verify_jwt = true
+import_map = "./functions/claim-promo/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/claim-promo/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/claim-promo/*.html" ]

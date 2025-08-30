@@ -1,103 +1,66 @@
 // app/_layout.tsx
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import { BlurView } from 'expo-blur';
-import { ThemeProvider, useTheme } from '../lib/theme';
+import React, { useEffect, useState } from 'react';
+import { Slot, useRouter, useSegments } from 'expo-router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ThemeProvider } from '../lib/theme';
+import { supabase } from '../lib/supabase';
+import { Session } from '@supabase/supabase-js';
+import { ActivityIndicator, View } from 'react-native';
 
-function ThemedTabs() {
-  const { colors, resolved } = useTheme(); // resolved: 'light' | 'dark'
+export default function RootLayout() {
+  const [session, setSession] = useState<Session | null | undefined>(undefined);
+  const [initialCheckDone, setInitialCheckDone] = useState(false);
+
+  const segments = useSegments();
+  const router = useRouter();
+
+  const inAuthGroup = segments[0] === '(auth)';
+
+  useEffect(() => {
+    const getSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      setSession(data.session);
+      setInitialCheckDone(true);
+    };
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    getSession();
+
+    return () => {
+      listener.subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!initialCheckDone) return;
+
+    if (!session && !inAuthGroup) {
+      router.replace('/(auth)/signin');
+    } else if (session && inAuthGroup) {
+      router.replace('/(tabs)');
+    }
+  }, [session, inAuthGroup, initialCheckDone]);
+
+  if (!initialCheckDone) {
+    return (
+      <SafeAreaProvider>
+        <ThemeProvider>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <ActivityIndicator size="large" />
+          </View>
+        </ThemeProvider>
+      </SafeAreaProvider>
+    );
+  }
 
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-        tabBarActiveTintColor: colors.active,
-        tabBarInactiveTintColor: colors.inactive,
-        tabBarStyle: {
-          position: 'absolute',
-          backgroundColor: 'transparent', // let BlurView show through
-          borderTopWidth: 0,
-          height: 56,
-          elevation: 0,
-        },
-        tabBarBackground: () => (
-          <BlurView
-            intensity={30}
-            tint={resolved === 'dark' ? 'dark' : 'light'}
-            style={StyleSheet.absoluteFill}
-          />
-        ),
-      }}
-    >
-      {/* 1. Home */}
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" size={size} color={color} />
-          ),
-        }}
-      />
-
-      {/* 2. Alerts (inbox route) */}
-      <Tabs.Screen
-        name="inbox"
-        options={{
-          title: 'Alerts',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="notifications-outline" size={size} color={color} />
-          ),
-        }}
-      />
-
-      {/* 3. Alpha Notes */}
-      <Tabs.Screen
-        name="alpha-notes"
-        options={{
-          title: 'Alpha Notes',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="newspaper-outline" size={size} color={color} />
-          ),
-        }}
-      />
-
-      {/* 4. About */}
-      <Tabs.Screen
-        name="about"
-        options={{
-          title: 'About',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons
-              name="information-circle-outline"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-
-      {/* 5. Settings (last) */}
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: 'Settings',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="settings-outline" size={size} color={color} />
-          ),
-        }}
-      />
-    </Tabs>
-  );
-}
-
-export default function Layout() {
-  return (
-    <ThemeProvider>
-      <ThemedTabs />
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider>
+        <Slot />
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }

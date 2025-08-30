@@ -87,13 +87,13 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.kbosworth.bitcoinalpha'
+    namespace 'com.kennethbosworth.bitcoinalpha'
     defaultConfig {
-        applicationId 'com.kbosworth.bitcoinalpha'
+        applicationId 'com.kennethbosworth.bitcoinalpha'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0.0"
+        versionName "0.0.1"
     }
     signingConfigs {
         debug {

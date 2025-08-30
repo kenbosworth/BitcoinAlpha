@@ -3,16 +3,18 @@ import { supabase } from '../lib/supabase';
 export type PriceRow = { symbol: string; ts: string; price: number };
 
 export async function getPrices24h(symbol = 'BTCUSD') {
-  const sinceIso = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   const { data, error } = await supabase
     .from('prices_intraday')
     .select('symbol, ts, price')
     .eq('symbol', symbol)
-    .gte('ts', sinceIso)
-    .order('ts', { ascending: true });
+    .order('ts', { ascending: false }) // newest first
+    .limit(50); // adjust for your chart resolution
+
   if (error) throw error;
-  return (data ?? []) as PriceRow[];
+
+  return (data ?? []).reverse() as PriceRow[]; // oldest-to-newest for chart
 }
+
 
 export function calcDelta(rows: PriceRow[]) {
   if (!rows.length) return { pct: 0, abs: 0 };
@@ -30,10 +32,10 @@ export function parseTs(iso: string) {
   return Date.parse(s);
 }
 
-export function isStale(latestIso?: string, thresholdSec = 300) {
-  if (!latestIso) return true;
-  const t = parseTs(latestIso);
-  if (Number.isNaN(t)) return true;
-  const ageSec = (Date.now() - t) / 1000;
-  return ageSec > thresholdSec;
+export function isStale(ts?: string | null): boolean {
+  if (!ts) return true;
+  const then = Date.parse(ts); // safely respects timezones
+  const now = Date.now();
+  return now - then > 2 * 60_000; // 2 minutes = 120,000 ms
 }
+

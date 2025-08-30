@@ -8,12 +8,13 @@ export type AlphaNote = {
   category: 'app' | 'market' | null;
   pinned: boolean | null;
   published: boolean | null;
+  image_url?: string | null; // ← Add this
 };
 
 export async function getLatestAlphaNote(): Promise<AlphaNote | null> {
   const { data, error } = await supabase
     .from('alpha_notes')
-    .select('id, created_at, title, body, category, pinned, published')
+    .select('id, created_at, title, body, category, pinned, published, image_url') // ← Include image_url
     .eq('published', true)
     .order('pinned', { ascending: false })
     .order('created_at', { ascending: false })
@@ -27,7 +28,7 @@ export async function getLatestAlphaNote(): Promise<AlphaNote | null> {
 export async function getAlphaNotes(limit = 50, offset = 0): Promise<AlphaNote[]> {
   const { data, error } = await supabase
     .from('alpha_notes')
-    .select('id, created_at, title, body, category, pinned, published')
+    .select('id, created_at, title, body, category, pinned, published, image_url') // ← Include image_url
     .eq('published', true)
     .order('pinned', { ascending: false })
     .order('created_at', { ascending: false })

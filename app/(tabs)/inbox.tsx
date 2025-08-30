@@ -7,11 +7,12 @@ import {
   FlatList,
   RefreshControl,
   ListRenderItem,
+  Image,
 } from 'react-native';
 import { useFocusEffect } from 'expo-router';
-import { useTheme } from '../lib/theme';
-import { getAlerts, type AlertRow } from '../services/alerts';
-import { parseTs } from '../services/prices'; // reuse our safe timestamp parser
+import { useTheme } from '../../lib/theme';
+import { getAlerts, type AlertRow } from '../../services/alerts';
+import { parseTs } from '../../services/prices';
 
 export default function Inbox() {
   const { colors } = useTheme();
@@ -50,7 +51,9 @@ export default function Inbox() {
     load(false);
   };
 
-  const renderItem: ListRenderItem<AlertRow> = ({ item }) => (
+  const renderItem: ListRenderItem<AlertRow> = ({ item }) => {
+
+  return (
     <View style={[styles.card, { borderColor: colors.border }]}>
       {!!item.title && (
         <Text style={{ color: colors.text, fontWeight: '700' }}>{item.title}</Text>
@@ -59,6 +62,13 @@ export default function Inbox() {
         <Text style={{ color: colors.inactive, marginTop: 4 }} selectable>
           {item.body}
         </Text>
+      )}
+      {!!item.image_url && (
+        <Image
+          source={{ uri: item.image_url }}
+          style={{ width: '100%', height: 200, borderRadius: 12, marginTop: 10 }}
+          resizeMode="contain"
+        />
       )}
       <View style={styles.metaRow}>
         {(item.cycle_day ?? null) && (
@@ -73,11 +83,12 @@ export default function Inbox() {
       </View>
     </View>
   );
+};
+
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.bg }]}>
       <Text style={[styles.title, { color: colors.text }]}>Inbox</Text>
-
       <FlatList
         data={items}
         keyExtractor={(it) => it.id}
@@ -118,7 +129,21 @@ function timeAgo(iso: string) {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  title: { fontSize: 22, fontWeight: '700', paddingHorizontal: 20, paddingTop: 20, paddingBottom: 12 },
-  card: { borderWidth: 1, borderRadius: 16, padding: 12 },
-  metaRow: { flexDirection: 'row', alignItems: 'center', marginTop: 8 },
+  title: {
+    fontSize: 22,
+    fontWeight: '700',
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 12,
+  },
+  card: {
+    borderWidth: 1,
+    borderRadius: 16,
+    padding: 12,
+  },
+  metaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 8,
+  },
 });

@@ -7,12 +7,13 @@ import {
   Text,
   FlatList,
   RefreshControl,
+  Image,
 } from 'react-native';
 import { useFocusEffect } from 'expo-router';
-import { useTheme } from '../lib/theme';
-import { getAlphaNotes } from '../services/alphaNotes';
-import type { AlphaNote } from '../services/alphaNotes';
-import { parseTs } from '../services/prices';
+import { useTheme } from '../../lib/theme';
+import { getAlphaNotes } from '../../services/alphaNotes';
+import type { AlphaNote } from '../../services/alphaNotes';
+import { parseTs } from '../../services/prices';
 
 export default function AlphaNotesScreen() {
   const { colors } = useTheme();
@@ -53,6 +54,19 @@ export default function AlphaNotesScreen() {
 
   const renderItem = ({ item }: { item: AlphaNote }) => (
     <View style={[styles.card, { borderColor: colors.border }]}>
+      {!!item.image_url && (
+        <Image
+          source={{ uri: item.image_url }}
+          style={{
+            height: 280,
+            borderRadius: 8,
+            marginTop: 10,
+            marginBottom: 30,
+            width: '100%',
+            resizeMode: 'cover',
+          }}
+        />
+      )}
       {!!item.title && (
         <Text style={{ color: colors.text, fontWeight: '700' }}>{item.title}</Text>
       )}
@@ -61,6 +75,7 @@ export default function AlphaNotesScreen() {
           {item.body}
         </Text>
       )}
+
       <View style={{ flexDirection: 'row', marginTop: 8 }}>
         <Text style={{ color: colors.inactive, fontSize: 12 }}>
           {new Date(parseTs(item.created_at)).toLocaleDateString()}

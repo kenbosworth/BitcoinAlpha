@@ -26,13 +26,13 @@ const KEY = 'theme_choice';
 
 function palette(scheme: ResolvedScheme): ThemeColors {
   return scheme === 'dark'
-    ? { bg: '#0b0b10', text: '#e5e7eb', inactive: '#9ca3af', active: '#38bdf8', border: '#1f2937' }
+    ? { bg: '#000000', text: '#e5e7eb', inactive: '#9ca3af', active: '#38bdf8', border: '#1f2937' }
     : { bg: '#ffffff', text: '#111827', inactive: '#6b7280', active: '#0ea5e9', border: '#e5e7eb' };
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const system: ResolvedScheme = (Appearance.getColorScheme() ?? 'light') as ResolvedScheme;
-  const [choice, setChoiceState] = useState<ThemeChoice>('system');
+  const system: ResolvedScheme = (Appearance.getColorScheme() ?? 'dark') as ResolvedScheme;
+  const [choice, setChoiceState] = useState<ThemeChoice>('dark');
   const [systemScheme, setSystemScheme] = useState<ResolvedScheme>(system);
 
   // Load persisted choice
