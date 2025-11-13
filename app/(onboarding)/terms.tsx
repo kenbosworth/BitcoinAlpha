@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, Pressable, Alert, Image, StyleSheet, ScrollView } from 'react-native';
-import { router } from 'expo-router';
 import { supabase } from '../../lib/supabase';
+import { useAuth } from '../../lib/auth-context'; // ✅ NEW IMPORT
 
 export default function Terms() {
+  const { reloadProfile } = useAuth(); // ✅ NEW: Get reload function from context
   const [busy, setBusy] = useState(false);
 
   async function agree() {
@@ -22,7 +23,14 @@ export default function Terms() {
       if (!res.ok || !json?.ok) {
         throw new Error(json?.error || 'Failed to agree terms');
       }
-      router.replace('/(onboarding)/promo');
+      
+      // ✅ NEW: Reload profile so gate sees updated terms_agreed_at
+      // This triggers the gate to re-evaluate and navigate to promo automatically
+      await reloadProfile();
+      
+      // ✅ REMOVED: router.replace('/(onboarding)/promo')
+      // The gate handles navigation now that profile is fresh
+      
     } catch (e: any) {
       Alert.alert('Error', e.message ?? String(e));
     } finally {
