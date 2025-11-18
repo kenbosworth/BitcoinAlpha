@@ -6,7 +6,8 @@ import { ThemeProvider } from '../lib/theme';
 import { supabase } from '../lib/supabase';
 import { Session } from '@supabase/supabase-js';
 import { ActivityIndicator, AppState, AppStateStatus, View } from 'react-native';
-import { AuthContext } from '../lib/auth-context'; // ✅ NEW IMPORT
+import { AuthContext } from '../lib/auth-context';
+import { initializePurchases, loginToRevenueCat } from '../lib/purchases'; // ✅ NEW IMPORT
 
 type Profile = {
   id: string;
@@ -46,13 +47,26 @@ export default function RootLayout() {
 
   // Keep your original auth subscription behavior
   useEffect(() => {
+    // ✅ NEW: Initialize RevenueCat on app start
+    initializePurchases();
+    
     const bootstrap = async () => {
       const { data } = await supabase.auth.getSession();
       setSession(data.session);
       setInitialCheckDone(true);
+      
+      // ✅ NEW: Log user into RevenueCat if we have a session
+      if (data.session?.user?.id) {
+        await loginToRevenueCat(data.session.user.id);
+      }
     };
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, newSession) => {
+    const { data: listener } = supabase.auth.onAuthStateChange(async (_event, newSession) => {
       setSession(newSession);
+      
+      // ✅ NEW: Log in/out of RevenueCat when auth state changes
+      if (newSession?.user?.id) {
+        await loginToRevenueCat(newSession.user.id);
+      }
     });
     bootstrap();
     return () => listener.subscription.unsubscribe();
