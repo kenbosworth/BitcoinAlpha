@@ -14,6 +14,8 @@ type Profile = {
   tier: 'free' | 'trial' | 'promo' | 'standard' | null;
   terms_agreed_at: string | null;
   trial_expires_at: string | null;
+  subscription_status: 'active' | 'trialing' | 'expired' | 'cancelled' | null;
+  subscription_expires_at: string | null;
 };
 
 function parseIso(iso?: string | null) {
@@ -25,11 +27,18 @@ function parseIso(iso?: string | null) {
 
 function isEntitled(p?: Profile | null) {
   if (!p) return false;
-  if (p.tier === 'standard' || p.tier === 'promo') return true;
+  
+  // Check subscription status (primary entitlement check)
+  if (p.subscription_status === 'active' || p.subscription_status === 'trialing') {
+    return true;
+  }
+  
+  // Legacy trial support (for users who started before subscription system)
   if (p.tier === 'trial') {
     const t = parseIso(p.trial_expires_at);
     return Number.isFinite(t) && Date.now() < t;
   }
+  
   return false;
 }
 
@@ -80,7 +89,7 @@ export default function RootLayout() {
     }
     const { data, error } = await supabase
       .from('profiles')
-      .select('id, tier, terms_agreed_at, trial_expires_at')
+      .select('id, tier, terms_agreed_at, trial_expires_at, subscription_status, subscription_expires_at')
       .eq('id', session.user.id)
       .maybeSingle();
     if (error) {
@@ -114,16 +123,22 @@ export default function RootLayout() {
       return;
     }
 
-    // 3) Not entitled → onboarding/promo
-    if (!isEntitled(profile)) {
-      if (!inOnboardingGroup || segments[1] !== 'promo') {
-        router.replace('/(onboarding)/promo');
-      }
+  // 3) Not entitled → onboarding/promo (but allow purchase screen)
+if (!isEntitled(profile)) {
+  if (!inOnboardingGroup || (segments[1] !== 'promo' && segments[1] !== 'purchase')) {
+    router.replace('/(onboarding)/promo');
+  }
+  setLoadingGate(false);
+  return;
+}
+
+    // 4) Entitled but on purchase screen → stay there (completing subscription)
+    if (inOnboardingGroup && segments[1] === 'purchase') {
       setLoadingGate(false);
       return;
     }
 
-    // 4) Entitled → tabs
+    // 5) Entitled → tabs
     if (inAuthGroup || inOnboardingGroup) {
       router.replace('/(tabs)');
     }

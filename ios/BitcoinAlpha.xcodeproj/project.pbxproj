@@ -8,28 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		327A88830D4C2824A9497D24 /* libPods-BitcoinAlpha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B8FF05906AFF18B5F7D0FD /* libPods-BitcoinAlpha.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		7CA8D9FCC72202944D5F202F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 2FD0C3FB71E5E359D9ED3E7E /* PrivacyInfo.xcprivacy */; };
+		58B73CAA136D195FBB153A5A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 04D9ECD1C8BBD5830C660562 /* PrivacyInfo.xcprivacy */; };
+		9803A59AD1CFA865FF0FE162 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8279DAFC11E51A0981F7AB6E /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		E2CAF19879158154C33567D1 /* libPods-BitcoinAlpha.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E3C8F33A2EB49E77F6A80C /* libPods-BitcoinAlpha.a */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		F60BD27157A3DF2B56C72CC5 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970CD10576D64DFFD1178703 /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0F920AA6225A1C43A665730D /* Pods-BitcoinAlpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinAlpha.release.xcconfig"; path = "Target Support Files/Pods-BitcoinAlpha/Pods-BitcoinAlpha.release.xcconfig"; sourceTree = "<group>"; };
+		04D9ECD1C8BBD5830C660562 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = BitcoinAlpha/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* BitcoinAlpha.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinAlpha.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BitcoinAlpha/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BitcoinAlpha/Info.plist; sourceTree = "<group>"; };
-		14E3C8F33A2EB49E77F6A80C /* libPods-BitcoinAlpha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BitcoinAlpha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2EABEC356263118E1D8E958D /* Pods-BitcoinAlpha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinAlpha.debug.xcconfig"; path = "Target Support Files/Pods-BitcoinAlpha/Pods-BitcoinAlpha.debug.xcconfig"; sourceTree = "<group>"; };
-		2FD0C3FB71E5E359D9ED3E7E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = BitcoinAlpha/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		970CD10576D64DFFD1178703 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-BitcoinAlpha/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		8279DAFC11E51A0981F7AB6E /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-BitcoinAlpha/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		90B6FE26827CB48BC9F8E61C /* Pods-BitcoinAlpha.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinAlpha.release.xcconfig"; path = "Target Support Files/Pods-BitcoinAlpha/Pods-BitcoinAlpha.release.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = BitcoinAlpha/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		E1B8FF05906AFF18B5F7D0FD /* libPods-BitcoinAlpha.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BitcoinAlpha.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BitcoinAlpha/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* BitcoinAlpha-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "BitcoinAlpha-Bridging-Header.h"; path = "BitcoinAlpha/BitcoinAlpha-Bridging-Header.h"; sourceTree = "<group>"; };
+		F3852A925992FCBDA5320417 /* Pods-BitcoinAlpha.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinAlpha.debug.xcconfig"; path = "Target Support Files/Pods-BitcoinAlpha/Pods-BitcoinAlpha.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,21 +37,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2CAF19879158154C33567D1 /* libPods-BitcoinAlpha.a in Frameworks */,
+				327A88830D4C2824A9497D24 /* libPods-BitcoinAlpha.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13401A429E59104C3D76B6C0 /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				DAB5DC89DED6C8C4EDD6279C /* BitcoinAlpha */,
-			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* BitcoinAlpha */ = {
 			isa = PBXGroup;
 			children = (
@@ -61,7 +53,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				2FD0C3FB71E5E359D9ED3E7E /* PrivacyInfo.xcprivacy */,
+				04D9ECD1C8BBD5830C660562 /* PrivacyInfo.xcprivacy */,
 			);
 			name = BitcoinAlpha;
 			sourceTree = "<group>";
@@ -70,9 +62,17 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				14E3C8F33A2EB49E77F6A80C /* libPods-BitcoinAlpha.a */,
+				E1B8FF05906AFF18B5F7D0FD /* libPods-BitcoinAlpha.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6709D7F25AA3C022C69AAAAF /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				A57A32A4F52969A23EC8FD1E /* BitcoinAlpha */,
+			);
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -89,8 +89,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				C7568B2E8E384949A348B13F /* Pods */,
-				13401A429E59104C3D76B6C0 /* ExpoModulesProviders */,
+				C3A530069D45F144CC101994 /* Pods */,
+				6709D7F25AA3C022C69AAAAF /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -105,6 +105,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A57A32A4F52969A23EC8FD1E /* BitcoinAlpha */ = {
+			isa = PBXGroup;
+			children = (
+				8279DAFC11E51A0981F7AB6E /* ExpoModulesProvider.swift */,
+			);
+			name = BitcoinAlpha;
+			sourceTree = "<group>";
+		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,21 +122,13 @@
 			path = BitcoinAlpha/Supporting;
 			sourceTree = "<group>";
 		};
-		C7568B2E8E384949A348B13F /* Pods */ = {
+		C3A530069D45F144CC101994 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2EABEC356263118E1D8E958D /* Pods-BitcoinAlpha.debug.xcconfig */,
-				0F920AA6225A1C43A665730D /* Pods-BitcoinAlpha.release.xcconfig */,
+				F3852A925992FCBDA5320417 /* Pods-BitcoinAlpha.debug.xcconfig */,
+				90B6FE26827CB48BC9F8E61C /* Pods-BitcoinAlpha.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		DAB5DC89DED6C8C4EDD6279C /* BitcoinAlpha */ = {
-			isa = PBXGroup;
-			children = (
-				970CD10576D64DFFD1178703 /* ExpoModulesProvider.swift */,
-			);
-			name = BitcoinAlpha;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,13 +139,12 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BitcoinAlpha" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				6397EB96C7302E67F38C2388 /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				A78F5043D7E050D16EDBE936 /* [CP] Embed Pods Frameworks */,
+				6B70D806769E6164E4D8C1DB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -163,7 +162,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2610;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1250;
@@ -196,7 +195,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				7CA8D9FCC72202944D5F202F /* PrivacyInfo.xcprivacy in Resources */,
+				58B73CAA136D195FBB153A5A /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,24 +239,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6397EB96C7302E67F38C2388 /* [Expo] Configure project */ = {
+		6B70D806769E6164E4D8C1DB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BitcoinAlpha/Pods-BitcoinAlpha-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
 			);
-			name = "[Expo] Configure project";
-			outputFileListPaths = (
-			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-BitcoinAlpha/expo-configure-project.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BitcoinAlpha/Pods-BitcoinAlpha-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -309,24 +307,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BitcoinAlpha/Pods-BitcoinAlpha-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A78F5043D7E050D16EDBE936 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BitcoinAlpha/Pods-BitcoinAlpha-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BitcoinAlpha/Pods-BitcoinAlpha-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -335,7 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				F60BD27157A3DF2B56C72CC5 /* ExpoModulesProvider.swift in Sources */,
+				9803A59AD1CFA865FF0FE162 /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +324,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EABEC356263118E1D8E958D /* Pods-BitcoinAlpha.debug.xcconfig */;
+			baseConfigurationReference = F3852A925992FCBDA5320417 /* Pods-BitcoinAlpha.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -356,7 +336,9 @@
 					"FB_SONARKIT_ENABLED=1",
 				);
 				INFOPLIST_FILE = BitcoinAlpha/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bitcoin Alpha";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -380,14 +362,16 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F920AA6225A1C43A665730D /* Pods-BitcoinAlpha.release.xcconfig */;
+			baseConfigurationReference = 90B6FE26827CB48BC9F8E61C /* Pods-BitcoinAlpha.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = BitcoinAlpha/BitcoinAlpha.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = BitcoinAlpha/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bitcoin Alpha";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -439,6 +423,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = V2G67QL44Y;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -505,6 +490,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = V2G67QL44Y;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;

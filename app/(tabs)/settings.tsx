@@ -1,4 +1,4 @@
-// app/settings.tsx
+// app/(tabs)/settings.tsx
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Text, StyleSheet, View, Pressable, Alert, ActivityIndicator, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -8,10 +8,13 @@ import { registerPushToken } from '../../lib/notifications';
 import { useTheme } from '../../lib/theme';
 import { Link } from 'expo-router';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { SubscriptionStatus } from '../../components/SubscriptionStatus';
+import { confirmAndDeleteAccount } from '../../lib/account';
 
 export default function SettingsScreen() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [deleting, setDeleting] = useState(false);
   const router = useRouter();
   const { colors, choice, resolved, setChoice } = useTheme();
   const [pushMsg, setPushMsg] = useState<string>('');
@@ -61,6 +64,17 @@ export default function SettingsScreen() {
     else router.replace('/signin');
   }
 
+  async function handleDeleteAccount() {
+    setDeleting(true);
+    const success = await confirmAndDeleteAccount();
+    setDeleting(false);
+    
+    if (success) {
+      // User is automatically signed out and redirected to sign-in
+      router.replace('/(auth)/signin');
+    }
+  }
+
   const handleDateChange = async (_: any, date?: Date) => {
     if (date) {
       setDailyCycleDate(date);
@@ -92,8 +106,17 @@ export default function SettingsScreen() {
       <ScrollView contentContainerStyle={{ paddingBottom: 40 }}>
         <Text style={[styles.title, { color: colors.text }]}>Settings</Text>
 
+        {/* ===== NEW: Subscription Section ===== */}
+        <Text style={[styles.section, { color: colors.inactive }]}>Subscription</Text>
+        <SubscriptionStatus 
+          onRestoreComplete={() => {
+            // Optionally reload profile or trigger gate check
+            console.log('Restore completed, you may want to reload profile');
+          }}
+        />
+
         {/* Theme section */}
-        <Text style={[styles.section, { color: colors.inactive }]}>Theme</Text>
+        <Text style={[styles.section, { color: colors.inactive, marginTop: 24 }]}>Theme</Text>
         <View style={styles.row}>
           {(['system', 'light', 'dark'] as const).map((opt) => {
             const active = choice === opt;
@@ -189,11 +212,37 @@ export default function SettingsScreen() {
           </View>
         )}
 
+        {/* ===== NEW: Account Management Section ===== */}
+        <Text style={[styles.section, { color: colors.inactive, marginTop: 24 }]}>Account</Text>
+        
         {/* Sign out */}
         <View style={[styles.card, { borderColor: colors.border }]}>
           <Pressable onPress={onSignOut} style={styles.rowItem}>
-            <Text style={{ color: '#f43f5e', fontWeight: '700' }}>Sign Out</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <Ionicons name="log-out-outline" size={18} color={colors.inactive} />
+              <Text style={{ color: colors.text, fontWeight: '700' }}>Sign Out</Text>
+            </View>
           </Pressable>
+        </View>
+
+        {/* Delete account */}
+        <View style={[styles.card, { borderColor: '#f43f5e', marginTop: 8 }]}>
+          <Pressable 
+            onPress={handleDeleteAccount} 
+            disabled={deleting}
+            style={styles.rowItem}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <Ionicons name="trash-outline" size={18} color="#f43f5e" />
+              <Text style={{ color: '#f43f5e', fontWeight: '700' }}>
+                {deleting ? 'Deleting...' : 'Delete Account'}
+              </Text>
+            </View>
+            {deleting && <ActivityIndicator size="small" color="#f43f5e" />}
+          </Pressable>
+          <Text style={{ color: colors.inactive, marginTop: 8, fontSize: 12 }}>
+            Permanently delete your account and all data. This action cannot be undone.
+          </Text>
         </View>
       </ScrollView>
     </SafeAreaView>

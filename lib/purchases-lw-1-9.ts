@@ -114,68 +114,14 @@ export async function purchasePackage(packageToPurchase: PurchasesPackage) {
 
 /**
  * Restore purchases
- * This will sync the user's purchases from the App Store with RevenueCat
  */
 export async function restorePurchases() {
   try {
-    console.log('[RevenueCat] Restoring purchases...');
     const customerInfo = await Purchases.restorePurchases();
-    console.log('[RevenueCat] Purchases restored successfully');
+    console.log('[RevenueCat] Purchases restored');
     return customerInfo;
   } catch (e) {
     console.error('[RevenueCat] Restore failed:', e);
     throw e;
   }
-}
-
-/**
- * Get subscription info in a user-friendly format
- * Returns info about the current subscription status
- */
-export async function getSubscriptionInfo() {
-  try {
-    const customerInfo = await Purchases.getCustomerInfo();
-    
-    // Check for active premium entitlement
-    const premiumEntitlement = customerInfo.entitlements.active['premium'];
-    
-    if (!premiumEntitlement) {
-      return {
-        isActive: false,
-        productId: null,
-        willRenew: false,
-        expirationDate: null,
-        isInTrial: false,
-      };
-    }
-
-    return {
-      isActive: true,
-      productId: premiumEntitlement.productIdentifier,
-      willRenew: premiumEntitlement.willRenew,
-      expirationDate: premiumEntitlement.expirationDate,
-      isInTrial: premiumEntitlement.periodType === 'trial',
-      unsubscribeDetectedAt: premiumEntitlement.unsubscribeDetectedAt,
-      billingIssueDetectedAt: premiumEntitlement.billingIssueDetectedAt,
-    };
-  } catch (e) {
-    console.error('[RevenueCat] Failed to get subscription info:', e);
-    throw e;
-  }
-}
-
-/**
- * Format product ID to human-readable name
- */
-export function getProductDisplayName(productId: string | null): string {
-  if (!productId) return 'No active subscription';
-  
-  const names: Record<string, string> = {
-    'founder_monthly': 'Founders Monthly ($0.99/mo)',
-    'founder_annual': 'Founders Annual ($9.99/yr)',
-    'ea_monthly': 'Monthly Subscription ($1.99/mo)',
-    'ea_annual': 'Annual Subscription ($14.99/yr)',
-  };
-  
-  return names[productId] || productId;
 }

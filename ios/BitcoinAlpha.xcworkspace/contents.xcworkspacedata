@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../../Downloads/BitcoinAlpha.storekit">
+   </FileRef>
+   <FileRef
       location = "group:BitcoinAlpha.xcodeproj">
    </FileRef>
    <FileRef
